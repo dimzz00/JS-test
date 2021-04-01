@@ -1,23 +1,29 @@
-function makeRandomCode(ticket) {
-  let result = '';
-  let resultPrefix = '';
-  let finalCode = '';
+function tiketGenerate(tiket){
+  let array =[]
+  let char = 'QWERTYUIOPASDFGHJKLZXCVBNM1234567890'
+  let charLength = char.length
+  let digit = 9
+  let code = ''
+  let ticket = ''
   const prefix = ['TGD','YCC','SKU'];
   const prefixLength = prefix.length;
-  let array = [];
-  for (let index = 0; index < ticket; index++) {
-    result = Math.random().toString(36).substr(4);  
-    resultPrefix = prefix[Math.floor(Math.random() * prefixLength)]  
-    finalCode = resultPrefix + result.toUpperCase();
-    array.push(finalCode)
+  let pref = ''
+  for (let x = 0; x < tiket; x++){
+    for (let i = 0; i < digit; i++) {
+      let result = char[Math.floor(Math.random()*charLength)]
+      code = code + result
+    }
+    pref = prefix[Math.floor(Math.random()*prefixLength)]
+    ticket = pref + code
+    array.push(ticket)
+    code = ''
   }
-  return array;
-  
+  return array
 }
-let arrayResult = makeRandomCode(1000)
-console.log(arrayResult)
+
+let tiketResult = tiketGenerate(1000)
 
 const fs = require('fs');
-const write = fs.writeFileSync('data.txt', arrayResult);
+const write = fs.writeFileSync('hasil-soal-2.txt', tiketResult);
 
 return write;
